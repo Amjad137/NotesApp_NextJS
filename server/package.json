@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "19.x"
+    "node": "18.x"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index"
+    "start": "nodemon --exec babel-node index",
+    "build": "babel index.js --out-file dist/index.js"
   },
   "keywords": [],
   "author": "",
