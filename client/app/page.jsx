@@ -8,6 +8,10 @@ import Popup from "../components/Popup.component";
 import { fetchNotes } from "../Redux/notesSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+axios.defaults.baseURL =
+  "https://noteapp-server-fqvik8975-amjad137.vercel.app/notes";
+axios.defaults.params = {};
+
 export default function Home() {
   const dispatch = useDispatch();
 
@@ -30,7 +34,7 @@ export default function Home() {
       "Are You Sure You Want to Delete this Note ?"
     );
     if (promptAnswer) {
-      await axios.delete(`http://localhost:4000/notes/${id}`);
+      await axios.delete(`/${id}`);
       dispatch(fetchNotes());
     }
   };
@@ -40,7 +44,7 @@ export default function Home() {
   };
 
   const EditNote = async (id) => {
-    const selectedNote = await axios.get(`http://localhost:4000/notes/${id}`);
+    const selectedNote = await axios.get(`/${id}`);
     setEditNoteData(selectedNote.data.Note);
     openEditDialog();
   };
@@ -49,9 +53,7 @@ export default function Home() {
   };
 
   const openNoteContent = async (id) => {
-    const selectedNoteToView = await axios.get(
-      `http://localhost:4000/notes/${id}`
-    );
+    const selectedNoteToView = await axios.get(`/${id}`);
     setViewNote(selectedNoteToView.data.Note);
     openViewDialog();
     // console.log(selectedNoteToView);

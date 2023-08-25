@@ -23,9 +23,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
-  const getNotesData = await axios.get(
-    "https://noteapp-server-fqvik8975-amjad137.vercel.app/notes"
-  );
+  const getNotesData = await axios.get("/");
   const receivedNotesData = getNotesData.data.AllNotes;
   return receivedNotesData;
 });

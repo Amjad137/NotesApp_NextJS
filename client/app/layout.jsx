@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar.component";
 const inter = Inter({ subsets: ["latin"] });
 import { ReduxProvider } from "./ReduxProvider";
+import axios from "axios";
 
 export const metadata = {
   title: "Create Next App",

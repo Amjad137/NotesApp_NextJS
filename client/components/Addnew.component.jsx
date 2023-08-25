@@ -26,15 +26,11 @@ const AddNew = ({ close }) => {
         },
       };
 
-      const Response = await axios.post(
-        "http://localhost:4000/notes",
-        requestBody,
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      const Response = await axios.post("/", requestBody, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
 
       alert("Note Added successfully");
       setLoading(false);

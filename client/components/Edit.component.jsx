@@ -29,15 +29,11 @@ const Edit = ({ editNoteData, close }) => {
         },
       };
 
-      await axios.put(
-        `http://localhost:4000/notes/${editNoteData._id}`,
-        requestBody,
-        {
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
+      await axios.put(`/${editNoteData._id}`, requestBody, {
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
       dispatch(fetchNotes());
       //   alert("Note Updated successfully");
       setLoading(false);
