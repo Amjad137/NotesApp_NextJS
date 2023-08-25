@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/notes", Notes);
 
 app.get("/", (req, res) => {
-  res.json({ message: "Server Started Successfully" });
+  res.json({ message: "Server Started Successfully vercel" });
 });
 const port = 4000;
 app.listen(port, () => console.log(`Server is Started on Port: ${port}`));
