@@ -1,18 +1,20 @@
 "use client";
 //this is a template made with HeadlessUi, this is used to create a PopUp effect
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import AddNew from "./Addnew.component";
 import Edit from "./Edit.component";
 import ViewPage from "./View.component";
+import Loading from "./Loading.component";
 
 const Popup = ({ isOpen, setIsOpen, pageName, editNoteData, noteData }) => {
   const components = {
     AddNew: <AddNew close={closeModal} />,
     Edit: <Edit editNoteData={editNoteData} close={closeModal} />,
     ViewPage: <ViewPage noteData={noteData} />,
+    Loading: <Loading />,
     // These are the Pages which are going to be rendered in the Popup window based on the situation
   };
 

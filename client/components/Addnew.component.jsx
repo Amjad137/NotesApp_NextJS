@@ -2,8 +2,11 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { fetchNotes } from "@/Redux/notesSlice";
 
 const AddNew = ({ close }) => {
+  const dispatch = useDispatch();
   const [notesData, setNotesData] = useState({
     Title: "",
     Content: "",
@@ -35,6 +38,8 @@ const AddNew = ({ close }) => {
 
       alert("Note Added successfully");
       setLoading(false);
+      dispatch(fetchNotes());
+
       close();
     } catch (error) {
       alert("Title/Content Cannot be Empty!");

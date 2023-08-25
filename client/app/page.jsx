@@ -5,27 +5,24 @@ import axios from "axios";
 import { LuEdit } from "react-icons/lu";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import Popup from "../components/Popup.component";
-import { fetchNotesData } from "../Redux/NotesReducer/Notes.actions";
+import { fetchNotes } from "../Redux/notesSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const allNotesData = useSelector((state) => state.notes.notesData); //to get All Notes from redux store
+
   const [editNoteData, setEditNoteData] = useState(); //to get the data of the Note which should be edited
   const [viewNote, setViewNote] = useState(); //to get the data of the note which should be viewed
 
   //triggers to open the PopUp
   const [openNote, setOpenNote] = useState(false); //to View Note
   const [openEditPage, setOpenEditPage] = useState(false); //to edit Note
+  const allNotesData = useSelector((state) => state.notes.notes); //to get All Notes from redux store
+  const isLoading = useSelector((state) => state.notes.isLoading);
 
-  try {
-    useEffect(() => {
-      dispatch(fetchNotesData());
-    }, [allNotesData, dispatch]);
-  } catch (error) {
-    alert(error);
-    console.log(error);
-  }
+  useEffect(() => {
+    dispatch(fetchNotes());
+  }, [dispatch]);
 
   //delete prompt to delete the Note
   const deleteNote = async (id) => {
@@ -34,6 +31,7 @@ export default function Home() {
     );
     if (promptAnswer) {
       await axios.delete(`http://localhost:4000/notes/${id}`);
+      dispatch(fetchNotes());
     }
   };
 

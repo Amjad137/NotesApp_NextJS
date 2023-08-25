@@ -2,8 +2,12 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { fetchNotes } from "@/Redux/notesSlice";
 
 const Edit = ({ editNoteData, close }) => {
+  const dispatch = useDispatch();
+
   const [notesData, setNotesData] = useState({
     Title: editNoteData.Title,
     Content: editNoteData.Content,
@@ -34,6 +38,7 @@ const Edit = ({ editNoteData, close }) => {
           },
         }
       );
+      dispatch(fetchNotes());
       //   alert("Note Updated successfully");
       setLoading(false);
       close();
